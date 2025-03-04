@@ -1,0 +1,135 @@
+Test Case 1 (Handout example)
+
+    Log:
+        W:0,T1,1,1,5,-1
+        R:1,T1,2,2,0
+        W:2,T1,2,2,3,1
+        R:3,T1,1,5,2
+        C:4,T1,3
+        R:5,T2,1,5,-1
+        W:6,T2,1,5,2,5
+        C:7,T2,6
+
+Test Case 2 (Three transactions)
+
+    Log:
+        R:0,T1,6,6,-1
+        R:1,T2,4,4,-1
+        R:2,T3,9,9,-1
+        W:3,T1,7,7,2,0
+        W:4,T2,2,2,4,1
+        R:5,T3,6,6,2
+        W:6,T1,5,5,8,3
+        W:7,T3,1,1,9,5
+        C:8,T3,7
+        W:9,T1,6,6,2,6
+        C:10,T1,9
+        R:11,T2,5,8,4
+        W:12,T2,7,2,3,11
+        C:13,T2,12
+        
+Test Case 3 (Deadlocks)
+    
+    Log:
+        W:0,T1,4,4,1,-1
+        W:1,T2,5,5,2,-1
+        W:2,T3,6,6,3,-1
+        R:3,T1,1,1,0
+        R:4,T2,1,1,1
+        R:5,T3,2,2,2
+        R:6,T2,2,2,4
+        A:7,T3,5
+        W:8,T2,2,2,3,6
+        C:9,T2,8
+        W:10,T1,1,1,2,3
+        C:11,T1,10
+        
+Test Case 4 (No Conflicts)
+
+    Log:
+        R:0,T1,1,1,-1
+        R:1,T2,1,1,-1
+        R:2,T1,2,2,0
+        R:3,T2,2,2,1
+        R:4,T1,3,3,2
+        R:5,T2,3,3,3
+        W:6,T1,4,4,1,4
+        W:7,T2,5,5,2,5
+        C:8,T1,6
+        C:9,T2,7
+        
+Test Case 5: Multiple Deadlocks        OR if deadlock detection finds T1 & T2 deadlock first:
+    
+    Log:                            Log:
+        R:0,T1,1,1,-1                   R:0,T1,1,1,-1
+        R:1,T2,2,2,-1                   R:1,T2,2,2,-1
+        R:2,T3,1,1,-1                   R:2,T3,1,1,-1
+        R:3,T2,3,3,1                    R:3,T2,3,3,1
+        A:4,T3,2                        A:4,T2,3
+        A:5,T2,3                        W:5,T3,3,3,4,2
+        W:6,T1,2,2,1,0                  W:6,T1,2,2,1,0
+        C:7,T1,6                        C:7,T3,5
+                                        C:8,T1,6
+        
+Test Case 6: Larger deadlock cycle
+    
+    Log:
+        R:0,T1,1,1,-1
+        R:1,T2,2,2,-1
+        R:2,T3,3,3,-1
+        R:3,T4,4,4,-1
+        A:4,T4,3
+        W:5,T3,4,4,3,2
+        C:6,T3,5
+        W:7,T2,3,3,2,1
+        C:8,T2,7
+        W:9,T1,2,2,1,0
+        C:10,T1,9
+        
+Test Case 7: Small deadlock cycle
+    
+    Log:
+        W:0,T1,1,1,2,-1
+        W:1,T2,2,2,5,-1
+        A:2,T2,1
+        R:3,T1,2,2,0
+        C:4,T1,3
+
+Test Case 8: Three transaction with deadlock cycle
+    
+    Log:
+        R:0,T1,6,6,-1
+        R:1,T2,4,4,-1
+        R:2,T3,9,9,-1
+        W:3,T1,7,7,2,0
+        W:4,T2,2,2,4,1
+        R:5,T3,6,6,2
+        R:6,T2,5,5,4
+        W:7,T3,1,1,9,5
+        A:8,T2,6
+        C:9,T3,7
+        W:10,T1,2,2,8,3
+        W:11,T1,6,6,2,10
+        C:12,T1,11
+
+Test Case 9: Small transactions without deadlock cycle
+    
+    Log:
+        W:0,T1,1,1,2,-1
+        W:1,T2,3,3,5,-1
+        R:2,T1,2,2,0
+        R:3,T2,4,4,1
+        C:4,T1,2
+        C:5,T2,3
+
+Test Case 10: Handout example with Deadlock
+    
+    Log:
+        W:0,T1,1,1,5,-1
+        R:1,T2,2,2,-1
+        R:2,T1,2,2,0
+        A:3,T2,1
+        W:4,T1,2,2,3,2
+        R:5,T1,1,5,4
+        C:6,T1,5
+
