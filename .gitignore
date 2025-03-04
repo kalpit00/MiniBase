@@ -1,1 +1,22 @@
+# Database files
 /cs448p1/data.db
+*.db
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+
+# IDE files
+.idea/
+*.iml
+.DS_Store
